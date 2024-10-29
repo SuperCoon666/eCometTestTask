@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: github_api
+    environment:
+      - DATABASE_URL=postgresql://postgres:Gh03gh666@db:5432/e-Comet_Test
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Gh03gh666
+      - POSTGRES_DB=e-Comet_Test
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
